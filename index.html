@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+  </head>
+  <style>
+    .modal-wrapper {
+      height: 300px;
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <div class="modal-wrapper" style="">
+      <form>
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <input type="submit" id="sg_SubmitButton" value="submit"/>
+        </select>
+      </form>
+    </div>
+
+    <script>
+      var submit = document.getElementById('sg_SubmitButton');
+      var modal = document.querySelector('.modal-wrapper');
+      var date = new Date();
+      var today = date.getDay();
+      var sunday = 0;
+
+      function storeSubmitTrue() {
+        submit.addEventListener('click', function(e) {
+         localStorage.setItem("SubmitValue", true);
+       });
+      }
+
+      function hideModal(){
+       if(localStorage.SubmitValue === "true"){
+         modal.style.display = 'none';
+       }
+      }
+
+      function removeSubmitValue() {
+        localStorage.removeItem('SubmitValue');
+      }
+
+
+      modal.style.display = 'none';
+
+      if(today === sunday) {
+        modal.style.display = 'block';
+        storeSubmitTrue();
+        hideModal();
+      } else if (today !== sunday) {
+        removeSubmitValue();
+      }
+    </script>
+  </body>
+</html>
